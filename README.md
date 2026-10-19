@@ -52,7 +52,7 @@ python3 cma7.py hello_mls.sma out --backend=mls --run
 Синтаксис строго зафиксирован
 Он невероятно короткий и намеренно  запутанный, для ещё большей сложности  реверс-инжиниринга
 
-Переменные и печать
+# Переменные и печать
 
 sma
 x = 5
@@ -60,7 +60,7 @@ y = 10
 s_Значение x: {x}, y: {y}
 
 
-Условия и циклы
+# Условия и циклы
 
 sma
 e_x > 3
@@ -74,7 +74,7 @@ g_i < 5
     i = i + 1
 
 
-Функции
+# Функции
 
 sma
 fn_add(a, b)
@@ -84,13 +84,18 @@ result = fn_add(5, 3)
 s_Результат: {result}
 
 
-Однострочный формат
+# Однострочный формат
 
 Разрешено использовать ; как разделитель
 
 √sma
 all
 x=5;y=3;s_Сумма: {x+y}
+
+
+# часть governor логики на SMA++
+
+fn_should(p,t)=e_!cpu_can(p.pol);h_0|e_p.lim;p.lim=0;p.need=1;h_1|h_(t-p.time>=p.min_ns);fn_updn(p,t,n)=e_n>p.next&&t-p.time<p.up_ns;h_1|e_n<p.next&&t-p.time<p.dn_ns;h_1|h_0;fn_updn2(p,t,n)=e_p.next==n;h_0|e_fn_updn(p,t,n);p.cache=p.prev;h_0|p.next=n;p.time=t;h_1;fn_fast(p,t,n)=e_!fn_updn2(p,t,n);h_void|n=drv_fast(p.pol,n);e_!n;h_void|p.pol.cur=n;trace(n,p.pol.cpus);fn_def(p,t,n)=e_!fn_updn2(p,t,n);h_void|e_!p.wip;p.wip=1;irq_q(p.irq);fn_get(p,u,m)=f=arch_inv();p.pol.max|p.pol.cur;f=map(u,f,m);e_f==p.cache&&!p.need;h_p.next;p.need=0;p.prev=p.cache;p.cache=f;h_res(p.pol,f);fn_cpu_util(c,u,m,ty)=r=cpu_rq(c);e_rt(r)&&ty==FRQ;h_m|irq=util_irq(r);e_irq>=m;h_m|u+=util_rt(r);e_ty==FRQ;u=clamp(r,u)|dl=util_dl(r);e_u+dl>=m;h_m|e_ty==ENR;u+=dl|u=scale(u,irq,m)+irq;e_ty==FRQ;u+=bw_dl(r);h_min(m,u);fn_get_u(s)=r=cpu_rq(s.cpu);u=cfs(r);m=cap(r);s.max=m;s.bw=bw(r);u=boost(s.cpu,u);part(u,m,s.cpu);h_fn_cpu_util(s.cpu,u,m,FRQ);fn_iow_res(s,t,b)=e_t-s.last<=TICK;h_0|s.iw=b?s.min:0;s.pend=b;h_1;fn_iow(s,t,f)=b=f&IO;e_s.iw&&fn_iow_res(s,t,b);h_void|e_!b;h_void|e_s.pend;h_void|s.pend=1;e_s.iw;s.iw=min(s.iw<<1,1024);h_void|s.iw=s.min;fn_iow_ap(s,t,u,m)=e_!s.iw;h_u|e_fn_iow_res(s,t,0);h_u|e_!s.pend;s.iw>>=1;e_s.iw<s.min;s.iw=0;h_u|s.pend=0;h_max((s.iw*m)>>10,u);fn_single(h,t,f)=s=cont(h);p=s.p;fn_iow(s,t,f);s.last=t;ign(s,p);e_!fn_should(p,t);h_void|b=!p.need&&busy(s);u=fn_get_u(s);m=s.max;u=fn_iow_ap(s,t,u,m);nf=fn_get(p,u,m);e_b&&nf<p.next;nf=p.next;p.cache=p.prev;e_p.pol.fast;fn_fast(p,t,nf);t;lock(p.lock);fn_def(p,t,nf);unlock(p.lock);fn_shared(h,t,f)=s=cont(h);p=s.p;lock(p.lock);fn_iow(s,t,f);s.last=t;ign(s,p);e_fn_should(p,t);nf=fn_next_sh(s,t);e_p.pol.fast;fn_fast(p,t,nf);t;fn_def(p,t,nf);unlock(p.lock);fn_next_sh(s,t)=p=s.p;pol=p.pol;u=0;m=1;e_for_cpu(j,pol.rel,online);jc=per(j);ju=fn_get_u(jc);jm=jc.max;ju=fn_iow_ap(jc,t,ju,jm);e_ju*m>jm*u;u=ju;m=jm;h_fn_get(p,u,m)
 
 
 ---
