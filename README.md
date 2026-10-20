@@ -1,7 +1,13 @@
 markdown
 # SMA++ <GMA Compiler>
 
-**SMA++** — это ультра-быстрый язык программирования с закрытым исходным кодом (Closed Source), созданный для эры автоматизации и шифрования, при этом без потерь в производительности и безопасности памяти - компилятор GMA поддерживает перевод SMA++ в такие языки как Python https://img.shields.io/badge/Python-3 -3776AB?style=for-the-badge&logo= python&logoColor=white
+**SMA++** — это ультра-быстрый язык программирования с закрытым исходным кодом (Closed Source), созданный для эры автоматизации и шифрования, при этом без потерь в производительности и безопасности памяти — компилятор GMA поддерживает перевод SMA++ в такие языки как Python, C, Rust и другие.
+
+<p align="left">
+  <img src="https://img.shields.io/badge/Python-3-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python">
+  <img src="https://img.shields.io/badge/C-00599C?style=for-the-badge&logo=c&logoColor=white" alt="Rust">
+  <img src="https://img.shields.io/badge/Rust-000000?style=for-the-badge&logo=rust&logoColor=white" alt="Rust">
+</p>
 
 ---
 
