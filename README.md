@@ -114,19 +114,19 @@ s_Результат: {result}
 
 **C (Clang -O3 + LTO)**
 
-* CRC: 0.38s
-* Sum: 0.72s
+* CRC: 0.37s
+* Sum: 0.69s
 * Hash: 0.06s
 * Sieve: 0.09s
 * Matmul: 0.01s
 
 **SMA++ (MLS)**
 
-* CRC: 0.32s 
-* Sum: 0.71s 
+* CRC: 0.31s 
+* Sum: 0.69s 
 * Hash: 0.06s 
-* Sieve: 0.43s 
-* Matmul: 0.07s 
+* Sieve: 0.31s 
+* Matmul: 0.05s 
 
 **В чем SMA++ уступает Си:**
 SMA++ отстает в задачах **Sieve** и **Matmul**, потому что в MLS нет SIMD штучки.
