@@ -120,6 +120,26 @@ fn_should(p,t)=e_!cpu_can(p.pol);h_0|e_p.lim;p.lim=0;p.need=1;h_1|h_(t-p.time>=p
 
 ---
 
+**C (Clang -O3 + LTO)**
+
+* CRC: 0.38s
+* Sum: 0.72s
+* Hash: 0.06s
+* Sieve: 0.09s
+* Matmul: 0.01s
+
+**SMA++ (MLS)**
+
+* CRC: 0.32s 
+* Sum: 0.71s 
+* Hash: 0.06s 
+* Sieve: 0.43s 
+* Matmul: 0.07s 
+
+**В чем SMA++ уступает Си:**
+SMA++ отстает в задачах **Sieve** и **Matmul**, потому что в MLS нет SIMD штуки.
+
+
 ## 🗺 Дорожная карта (Roadmap)
 
 ☑ Парсер, IR, валидаторы, интерпретатор.
@@ -129,8 +149,6 @@ fn_should(p,t)=e_!cpu_can(p.pol);h_0|e_p.lim;p.lim=0;p.need=1;h_1|h_(t-p.time>=p
 ☐ Починка циклов в MLS (в процессе).
 ☐ Полноценные библиотеки SMA++ (math, io, string).
 ☐ Написание драйвера Governor на SMA++.
-☐ Создание AI-Агента (API для генерации кода).
-☐ Слой FS (Phoenix) и полная изоляция памяти.
 
 ---
 
