@@ -5,7 +5,7 @@ markdown
 
 <p align="left">
   <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python">
-  <img src="https://img.shields.io/badge/C%20-00599C?style=for-the-badge&logo=c&logoColor=white" alt="C">
+  <img src="https://badgen.net/badge/C//blue?icon=c" alt="C">
   <img src="https://img.shields.io/badge/Rust-000000?style=for-the-badge&logo=rust&logoColor=white" alt="Rust">
 </p>
 
